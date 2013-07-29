@@ -18,6 +18,8 @@
      */
     $.cookie = function(){
         var cookieOptions = {
+            domain: '',
+            secure: false,
             expires: '',
             path:'/'
         };
@@ -32,7 +34,7 @@
                     expires = "; expires=" + date.toGMTString();
                 }
                 else expires = "";
-                document.cookie = cookieName + "=" + cookieValue + expires + "; path=" + cookieOptions.path
+                document.cookie = cookieName + "=" + cookieValue + expires + "; path=" + cookieOptions.path+";domain="+ cookieOptions.domain+";"+(cookieOptions.secure ? ";secure" : '');
                 return true;
             },
             getCookie:function(cookieName) {
