@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QUnit Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.12.0.css">
+    <script type="text/javascript" src="http://code.jquery.com/qunit/qunit-1.12.0.js"></script>
+    <script type="text/javascript" src="./cookieManager.js"></script>
+    <script>
+        $(document).ready(function(){
+            var cookieName  = 'qunit_test_cookie';
+            var cookieValue = 'qunit_test_value';
+
+            test("Add Cookie", function(){
+                ok($.cookie(cookieName, cookieValue), "Added a cookie");
+            });
+
+            test("Get cookie", function(){
+                var cookie = $.cookie(cookieName);
+                equal(cookie, cookieValue, "The cookie returns the proper value '"+cookieValue+"'");
+            });
+
+            test("Deleting cookies", function(){
+                ok($.cookie(cookieName, null), "Deleted cookie by setting it to 'null'");
+                equal($.cookie(cookieName), false, "Tried to get '"+cookieName+"' and the result should be 'false'.");
+
+                ok($.cookie(cookieName, cookieValue), "Added another testing cookie");
+                ok($.cookie(cookieName, false), "Deleted cookie by setting it to 'false'");
+                equal($.cookie(cookieName), false, "Tried to get '"+cookieName+"' and the result should be 'false'.");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="qunit">test</div>
+    <div id="qunit-fixture"></div>
+
+
+</body>
+</html>
